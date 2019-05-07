@@ -2,7 +2,7 @@
 
 #### 介绍
 基于Qt的IconFont浏览工具，支持导出图片
-![截图]https://github.com/384782946/IconFontTool/blob/master/screenshot/1.png
+![截图](https://github.com/384782946/IconFontTool/blob/master/screenshot/1.png)
 
 #### 软件架构
 软件架构说明
