@@ -155,6 +155,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->color->installEventFilter(this);
     ui->bgcolor->installEventFilter(this);
 
+    ui->pushButton->setEnabled(false);
+
     auto lbState = new QLabel(this);
     lbState->setStyleSheet("color: rgb(100,100,100);");
     lbState->setOpenExternalLinks(true);
@@ -167,7 +169,6 @@ MainWindow::MainWindow(QWidget *parent) :
     changeUiColor();
 
     connect(btn,&QToolButton::clicked,this,[=](){
-
 
         QString path = QFileDialog::getOpenFileName(this,"Select font file",QString(),"TTF *.ttf");
 
@@ -184,6 +185,14 @@ MainWindow::MainWindow(QWidget *parent) :
         QtAwesome::getSingleton()->initIconFont(path);
 
         ui->lb_family->setText(m_fontFamily);
+
+        //清理
+        int count = ui->gridLayout->count();
+        for(int i=count-1;i>=0;--i){
+            auto w = ui->gridLayout->itemAt(i)->widget();
+            ui->gridLayout->removeWidget(w);
+            w->deleteLater();
+        }
 
         foreach(quint32 v,m_fontChars){
             auto w = new QToolButton(this);
@@ -210,7 +219,8 @@ MainWindow::MainWindow(QWidget *parent) :
             });
         }
 
-        btn->setEnabled(false);
+        ui->pushButton->setEnabled(true);
+        //btn->setEnabled(false);
     });
 }
 

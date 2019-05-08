@@ -174,6 +174,11 @@ bool QtAwesome::initIconFont(const QString& path )
 {
     static int fontAwesomeFontId = -1;
 
+    if(fontAwesomeFontId != -1){
+        QFontDatabase::removeApplicationFont(fontAwesomeFontId);
+        fontAwesomeFontId = -1;
+    }
+
     // only load font-awesome once
     if( fontAwesomeFontId < 0 ) {
 
